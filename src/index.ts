@@ -13,7 +13,9 @@ app.get("/", (req, res) => {
 	res.send("Hello, Madison");
 });
 
-app.get("/items", ItemService.getItems)
+app.get("/items", ItemService.getItems);
+app.post("/item", ItemService.createItem);
+app.get("/item/:id", ItemService.getItemById);
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);
