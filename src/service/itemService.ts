@@ -1,5 +1,7 @@
 import { Item } from "../model/item.js";
 import { Request, Response } from "express";
+import { Types } from "mongoose";
+import { logger } from "../logger.js";
 
 const ItemService = {
 	async getItems(req: Request, res: Response): Promise<void> {
@@ -8,23 +10,30 @@ const ItemService = {
 	},
 
 	async getItemById(req: Request, res: Response): Promise<void> {
-		const id = req.params.id;
+		const id = new Types.ObjectId(req.params.id);
 
 		try {
 			const item = await Item.findById(id);
 
 			if (!item) {
-				throw new Error("item not found");
+				res.json(`item with the id of ${id} not found`);
+				return;
 			}
 
 			res.json(item);
-			/* eslint-disable @typescript-eslint/no-explicit-any */
-		} catch (err: any) {
-			if (err.name === "CastError") {
-				res.json(`item not found or invalid id format`);
-			}
-			if (err.name === "item not found") {
-				res.json(`item not found`);
+		} catch (err: unknown) {
+			if (err instanceof Error && err.name === "CastError") {
+				res.json(`invalid id format`);
+				logger.error(`invalid id format: ${err.message}`);
+			} else {
+				res.json(`an unknown error occurred`);
+				if (err instanceof Error) {
+					logger.error(`an unknown error occurred: ${err.message}`);
+				} else {
+					logger.error(
+						`an unknown error occurred: ${JSON.stringify(err)}`
+					);
+				}
 			}
 		}
 	},
@@ -41,6 +50,46 @@ const ItemService = {
 		});
 
 		res.json(item);
+	},
+
+	async updateItem(req: Request, res: Response): Promise<void> {
+		const id = req.body.id;
+		const {title, description, due, complete, owner} = req.body;
+
+		try {
+			const item = await Item.findOneAndUpdate(
+				{ _id: id },
+				{
+					title: title,
+					description: description,
+					due: due,
+					complete: complete,
+					owner: owner,
+				},
+				{new: true}
+			);
+
+			if (!item) {
+				res.json(`item with the id of ${id} not found`);
+				return;
+			}
+
+			res.json(item);
+		} catch (err: unknown) {
+			if (err instanceof Error && err.name === "CastError") {
+				res.json(`invalid id format`);
+				logger.error(`invalid id format: ${err.message}`);
+			} else {
+				res.json(`an unknown error occurred`);
+				if (err instanceof Error) {
+					logger.error(`an unknown error occurred: ${err.message}`);
+				} else {
+					logger.error(
+						`an unknown error occurred: ${JSON.stringify(err)}`
+					);
+				}
+			}
+		}
 	},
 };
 
