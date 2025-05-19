@@ -1,0 +1,22 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: emiyaconsulting
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: todo-rest-api
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: todo-rest-api
+
+provider:
+    name: aws
+    stage: dev
+    region: us-west-2
+    runtime: nodejs22.x
+
+functions:
+    api:
+        handler: handler.handler
+        events:
+            - httpApi: "*"
+
+package: 
+    patterns:
+      - src/**
