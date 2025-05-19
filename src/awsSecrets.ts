@@ -1,5 +1,6 @@
 import {
 	GetSecretValueCommand,
+	GetSecretValueCommandOutput,
 	SecretsManagerClient,
 } from "@aws-sdk/client-secrets-manager";
 import { fromIni } from "@aws-sdk/credential-provider-ini";
@@ -16,7 +17,7 @@ const params = {
 	SecretId: process.env.SECRET_NAME,
 };
 
-let response;
+export let response: GetSecretValueCommandOutput;
 
 try {
 	response = await client.send(new GetSecretValueCommand(params));
@@ -24,4 +25,3 @@ try {
 	console.log("error", err);
 }
 
-export default response;
