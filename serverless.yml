@@ -16,6 +16,10 @@ functions:
         handler: handler.handler
         events:
             - httpApi: "*"
+        environment:
+          PORT: 3000
+          SECRET_NAME: todo-rest-api-mong
+          AWS_PROFILE: EmiyaDevsProd-880923331368
 
 package: 
     patterns:
