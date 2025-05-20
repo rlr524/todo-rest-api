@@ -5,22 +5,28 @@ app: todo-rest-api
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: todo-rest-api
 
+plugins:
+    - serverless-offline
+
 provider:
     name: aws
-    stage: dev
+    stage: ${opt:stage}
     region: us-west-2
     runtime: nodejs22.x
+    timeout: 30
+    environment:
+        STAGE: ${self:provider.stage}
 
 functions:
     api:
-        handler: handler.handler
+        handler: ./src/index.handler
         events:
             - httpApi: "*"
         environment:
-          PORT: 3000
-          SECRET_NAME: todo-rest-api-mong
-          AWS_PROFILE: EmiyaDevsProd-880923331368
+            PORT: 3000
+            SECRET_NAME: todo-rest-api-mong
+            AWS_PROFILE: EmiyaDevsProd-880923331368
 
-package: 
+package:
     patterns:
-      - src/**
+        - src/**
