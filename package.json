@@ -19,6 +19,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"devDependencies": {
+		"@aws-sdk/client-api-gateway": "^3.817.0",
 		"@eslint/js": "^9.26.0",
 		"@serverless/typescript": "^4.14.1",
 		"@types/cors": "^2.8.18",
@@ -43,6 +44,7 @@
 		"morgan": "^1.10.0",
 		"serverless": "^4.14.3",
 		"serverless-http": "^3.2.0",
-		"tslog": "^4.9.3"
+		"tslog": "^4.9.3",
+		"zod": "^3.25.28"
 	}
 }

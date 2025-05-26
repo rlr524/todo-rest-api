@@ -6,6 +6,7 @@ interface IItem {
 	due: string;
 	complete: boolean;
 	owner: string;
+	deleted: boolean;
 }
 
 const itemSchema = new Schema<IItem>(
@@ -15,6 +16,7 @@ const itemSchema = new Schema<IItem>(
 		due: { type: String, required: false },
 		complete: { type: Boolean, required: false },
 		owner: { type: String, required: true },
+		deleted: { type: Boolean, required: true },
 	},
 	{ timestamps: true }
 );

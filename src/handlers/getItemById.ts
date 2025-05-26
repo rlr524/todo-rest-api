@@ -1,9 +1,10 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function handler(event: any) {
+    const id = event.queryStringParameters;
 	console.info("Event", event);
 
 	return {
 		statusCode: 200,
-		body: JSON.stringify({ message: "Get item by ID" }),
+		body: JSON.stringify({ message: `Get item by ID - item id: ${id}` }),
 	};
 }

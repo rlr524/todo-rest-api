@@ -22,6 +22,7 @@ app.get("/items", ItemService.getItems);
 app.get("/item/:id", ItemService.getItemById);
 app.post("/item", ItemService.createItem);
 app.patch("/item", ItemService.updateItem);
+app.delete("/item/:id", ItemService.deleteItem);
 
 app.listen(port, () => {
 	console.log(`App listening on port ${port}`);

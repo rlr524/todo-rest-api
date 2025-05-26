@@ -91,6 +91,41 @@ const ItemService = {
 			}
 		}
 	},
+
+	async deleteItem(req: Request, res: Response): Promise<void> {
+		const id = new Types.ObjectId(req.params.id);
+
+		try {
+			const item = await Item.findOneAndUpdate(
+				{ _id: id },
+				{
+					deleted: true,
+				},
+				{new: true}
+			);
+
+			if (!item) {
+				res.json(`item with the id of ${id} not found`);
+				return;
+			}
+
+			res.json(item);
+		} catch (err: unknown) {
+			if (err instanceof Error && err.name === "CastError") {
+				res.json(`invalid id format`);
+				logger.error(`invalid id format: ${err.message}`);
+			} else {
+				res.json(`an unknown error occurred`);
+				if (err instanceof Error) {
+					logger.error(`an unknown error occurred: ${err.message}`);
+				} else {
+					logger.error(
+						`an unknown error occurred: ${JSON.stringify(err)}`
+					);
+				}
+			}
+		}
+	},
 };
 
 export default ItemService;
