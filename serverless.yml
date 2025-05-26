@@ -10,23 +10,49 @@ plugins:
 
 provider:
     name: aws
-    stage: ${opt:stage}
     region: us-west-2
+    stage: "dev"
     runtime: nodejs22.x
-    timeout: 30
-    environment:
-        STAGE: ${self:provider.stage}
+    memorySize: 128
+    timeout: 3
 
 functions:
-    api:
-        handler: ./src/index.handler
+    getItems:
+        handler: src/handlers/getItems.handler
+        description: Get all items
         events:
-            - httpApi: "*"
-        environment:
-            PORT: 3000
-            SECRET_NAME: todo-rest-api-mong
-            AWS_PROFILE: EmiyaDevsProd-880923331368
+            - http:
+                  path: /items
+                  method: get
 
-package:
-    patterns:
-        - src/**
+    createItem:
+        handler: src/handlers/createItem.handler
+        description: Create a single item
+        events:
+            - http:
+                  path: /item
+                  method: post
+
+    updateItem:
+        handler: src/handlers/updateItem.handler
+        description: Update a single item
+        events:
+            - http:
+                  path: /item
+                  method: patch
+
+    getItemById:
+        handler: src/handlers/getItemById.handler
+        description: Get a single item by ID
+        events:
+            - http:
+                  path: /item/{id}
+                  method: get
+
+    deleteItem:
+        handler: src/handlers/deleteItem.handler
+        description: Flag a single item as deleted
+        events:
+            - http:
+                  path: /item
+                  method: delete
