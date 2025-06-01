@@ -14,6 +14,4 @@ export interface CreateOrUpdateItemBody {
     description: string;
     due: Date;
     owner: string;
-    completed: boolean;
-    deleted: boolean;
 }
