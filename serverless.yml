@@ -4,6 +4,7 @@ org: emiyaconsulting
 app: todo-rest-api
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: todo-rest-api
+frameworkVersion: "4"
 
 plugins:
     - serverless-offline
@@ -14,45 +15,114 @@ provider:
     stage: "dev"
     runtime: nodejs22.x
     memorySize: 128
-    timeout: 3
+    timeout: 30
+    iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - dynamodb:*
+          Resource:
+              - arn:aws:dynamodb:us-west-2:{ID}:table/Item
+              - arn:aws:dynamodb:us-west-2:{ID}:table/User
 
 functions:
+    app:
+        handler: dist/index.handler
+        events:
+            - httpApi:
+                  path: /
+                  method: GET
     getItems:
-        handler: src/handlers/getItems.handler
+        handler: dist/index.handler
         description: Get all items
         events:
-            - http:
+            - httpApi:
                   path: /items
-                  method: get
-
+                  method: GET
     createItem:
-        handler: src/handlers/createItem.handler
+        handler: dist/index.handler
         description: Create a single item
         events:
-            - http:
+            - httpApi:
                   path: /item
-                  method: post
-
+                  method: POST
     updateItem:
-        handler: src/handlers/updateItem.handler
+        handler: dist/index.handler
         description: Update a single item
         events:
-            - http:
+            - httpApi:
                   path: /item
-                  method: patch
-
+                  method: PATCH
     getItemById:
-        handler: src/handlers/getItemById.handler
+        handler: dist/index.handler
         description: Get a single item by ID
         events:
-            - http:
+            - httpApi:
                   path: /item/{id}
-                  method: get
-
+                  method: GET
     deleteItem:
-        handler: src/handlers/deleteItem.handler
+        handler: dist/index.handler
         description: Flag a single item as deleted
         events:
-            - http:
+            - httpApi:
                   path: /item
-                  method: delete
+                  method: DELETE
+    getUsers:
+        handler: dist/index.handler
+        description: Get all users
+        events:
+            - httpApi:
+                  path: /users
+                  method: GET
+    createUser:
+        handler: dist/index.handler
+        description: Create a single user
+        events:
+            - httpApi:
+                  path: /user
+                  method: POST
+    updateUser:
+        handler: dist/index.handler
+        description: Update a single user
+        events:
+            - httpApi:
+                  path: /user
+                  method: PATCH
+    getUserById:
+        handler: dist/index.handler
+        description: Get a single user by ID
+        events:
+            - httpApi:
+                  path: /user/{id}
+                  method: GET
+    deleteUser:
+        handler: dist/index.handler
+        description: Flag a single user as deleted
+        events:
+            - httpApi:
+                  path: /user
+                  method: DELETE
+
+resources:
+    Resources:
+        Category:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: Item
+                BillingMode: PAY_PER_REQUEST
+                AttributeDefinitions:
+                    - AttributeName: id
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: id
+                      KeyType: HASH
+        Product:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: User
+                BillingMode: PAY_PER_REQUEST
+                AttributeDefinitions:
+                    - AttributeName: id
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: id
+                      KeyType: HASH
