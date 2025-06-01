@@ -50,7 +50,6 @@
 		"mongodb": "^6.16.0",
 		"mongoose": "^8.14.2",
 		"morgan": "^1.10.0",
-		"multer": "^2.0.0",
 		"serverless-http": "^3.2.0",
 		"uuid": "^11.1.0",
 		"winston": "^3.17.0"
