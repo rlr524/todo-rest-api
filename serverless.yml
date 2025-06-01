@@ -22,7 +22,6 @@ provider:
               - dynamodb:*
           Resource:
               - arn:aws:dynamodb:us-west-2:{ID}:table/Item
-              - arn:aws:dynamodb:us-west-2:{ID}:table/User
 
 functions:
     app:
@@ -66,59 +65,13 @@ functions:
             - httpApi:
                   path: /item
                   method: DELETE
-    getUsers:
-        handler: dist/index.handler
-        description: Get all users
-        events:
-            - httpApi:
-                  path: /users
-                  method: GET
-    createUser:
-        handler: dist/index.handler
-        description: Create a single user
-        events:
-            - httpApi:
-                  path: /user
-                  method: POST
-    updateUser:
-        handler: dist/index.handler
-        description: Update a single user
-        events:
-            - httpApi:
-                  path: /user
-                  method: PATCH
-    getUserById:
-        handler: dist/index.handler
-        description: Get a single user by ID
-        events:
-            - httpApi:
-                  path: /user/{id}
-                  method: GET
-    deleteUser:
-        handler: dist/index.handler
-        description: Flag a single user as deleted
-        events:
-            - httpApi:
-                  path: /user
-                  method: DELETE
 
 resources:
     Resources:
-        Category:
+        Item:
             Type: AWS::DynamoDB::Table
             Properties:
                 TableName: Item
-                BillingMode: PAY_PER_REQUEST
-                AttributeDefinitions:
-                    - AttributeName: id
-                      AttributeType: S
-                KeySchema:
-                    - AttributeName: id
-                      KeyType: HASH
-        Product:
-            Type: AWS::DynamoDB::Table
-            Properties:
-                TableName: User
                 BillingMode: PAY_PER_REQUEST
                 AttributeDefinitions:
                     - AttributeName: id
