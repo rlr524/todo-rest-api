@@ -8,10 +8,10 @@ export const logger = winston.createLogger({
 	],
 });
 
-export const accesslogger = winston.createLogger({
+export const accessLogger = winston.createLogger({
 	level: "info",
 	transports: [
 		new winston.transports.Console(),
-		new winston.transports.File({ filename: "access.log"})
-	]
-})
+		new winston.transports.File({ filename: "access.log" }),
+	],
+});

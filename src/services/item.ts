@@ -1,7 +1,7 @@
 import { Item } from "./../interfaces/item";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { accesslogger, logger } from "../utils/logger";
+import { logger } from "../utils/logger";
 
 const dynamodb = new DocumentClient();
 
@@ -34,8 +34,6 @@ class ItemService {
 			})
 			.promise();
 
-		accesslogger.info("createItem method invoked");
-
 		return newItem;
 	}
 
@@ -45,8 +43,6 @@ class ItemService {
 				TableName: process.env.ITEM_TABLE!,
 			})
 			.promise();
-
-		accesslogger.info("getAllItems method invoked");
 
 		return result.Items as Item[];
 	}
@@ -62,8 +58,6 @@ class ItemService {
 		if (!result.Item) {
 			return null;
 		}
-
-		accesslogger.info(`getItemById method invoked on item ${id}`);
 
 		return result.Item as Item;
 	}

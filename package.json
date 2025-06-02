@@ -40,7 +40,6 @@
 		"typescript-eslint": "^8.32.0"
 	},
 	"dependencies": {
-		"@aws-sdk/util-dynamodb": "^3.821.0",
 		"aws-sdk": "^2.1692.0",
 		"compression": "^1.8.0",
 		"cors": "^2.8.5",
@@ -51,6 +50,7 @@
 		"mongodb": "^6.16.0",
 		"mongoose": "^8.14.2",
 		"morgan": "^1.10.0",
+		"serverless": "^4.15.1",
 		"serverless-http": "^3.2.0",
 		"uuid": "^11.1.0",
 		"winston": "^3.17.0"
