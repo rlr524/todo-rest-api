@@ -7,7 +7,8 @@ const validateImageMiddleware: RequestHandler<Record<string, any>, any, MulterRe
 	if (req.file) {
 		const { error } = validateImage(req.file);
 		if (error) {
-			return res.status(400).json({ error });
+			res.status(400).json({ error });
+			return;
 		}
 	}
 	next();
