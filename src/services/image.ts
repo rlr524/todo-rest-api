@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import AWS from "aws-sdk";
-import ImageMetadata from "../interfaces/imageMetadata";
+import ImageMetadata from "../interfaces/imageMetadata.js";
 
 const s3 = new AWS.S3();
 

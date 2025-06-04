@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { CreateOrUpdateItemBody } from "../../interfaces/item";
+import { CreateOrUpdateItemBody } from "../../interfaces/item.js";
 
 const createOrUpdateValidateItem = (body: CreateOrUpdateItemBody) => {
 	const schema = Joi.object({

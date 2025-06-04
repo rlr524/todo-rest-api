@@ -16,7 +16,7 @@
 	"main": "dist/index.js",
 	"scripts": {
 		"compile": "tsc",
-		"dev": "serverless offline start --verbose",
+		"start": "serverless offline start --verbose",
 		"deploy": "serverless deploy --verbose",
 		"build": "npm run compile && npm run start",
 		"test": "jest"
@@ -33,6 +33,7 @@
 		"@types/uuid": "^10.0.0",
 		"eslint": "^9.26.0",
 		"globals": "^16.1.0",
+		"serverless-dynamodb": "^0.2.56",
 		"serverless-offline": "^14.4.0",
 		"ts-jest": "^29.3.4",
 		"tsx": "^4.19.4",
@@ -40,6 +41,7 @@
 		"typescript-eslint": "^8.32.0"
 	},
 	"dependencies": {
+		"@aws-sdk/client-secrets-manager": "^3.823.0",
 		"aws-sdk": "^2.1692.0",
 		"compression": "^1.8.0",
 		"cors": "^2.8.5",
@@ -51,7 +53,6 @@
 		"mongoose": "^8.14.2",
 		"morgan": "^1.10.0",
 		"multer": "^2.0.1",
-		"serverless": "^4.15.1",
 		"serverless-http": "^3.2.0",
 		"uuid": "^11.1.0",
 		"winston": "^3.17.0"

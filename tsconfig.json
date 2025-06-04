@@ -1,13 +1,9 @@
 {
 	"compilerOptions": {
-		"target": "es2022",
-		"lib": ["ES2022"],
-		"module": "ES2022",
+		"target": "es6",
+		"module": "commonjs",
 		"outDir": "./dist",
 		"rootDir": "./src",
-		"moduleResolution": "bundler",
-		"sourceMap": true,
-		"allowSyntheticDefaultImports": true,
 		"strict": true,
 		"esModuleInterop": true,
 		"skipLibCheck": true

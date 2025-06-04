@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import MulterRequest from "../types/multerRequest";
+import MulterRequest from "../types/multerRequest.js";
 
 const addFileToRequest = (req: Request, _res: Response, next: NextFunction) => {
 	if (req.file) {

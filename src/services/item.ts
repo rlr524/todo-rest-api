@@ -1,8 +1,8 @@
-import { Item } from "./../interfaces/item";
+import { Item } from "./../interfaces/item.js";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { logger } from "../utils/logger";
-import ImageMetadata from "../interfaces/imageMetadata";
+import { logger } from "../utils/logger.js";
+import ImageMetadata from "../interfaces/imageMetadata.js";
 
 const dynamodb = new DocumentClient();
 

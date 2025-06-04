@@ -1,9 +1,9 @@
 import { Router } from "express";
-import ItemController from "../controllers/item";
-import validateItem from "../middlewares/validateItem";
+import ItemController from "../controllers/item.js";
+import validateItem from "../middlewares/validateItem.js";
 import multer from "multer";
-import addFileToRequest from "../middlewares/addFileToRequest";
-import validateMultipleImages from "../middlewares/validateMultipleImages";
+import addFileToRequest from "../middlewares/addFileToRequest.js";
+import validateMultipleImages from "../middlewares/validateMultipleImages.js";
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-import ImageMetadata from "./imageMetadata";
+import ImageMetadata from "./imageMetadata.js";
 
 export interface Item {
 	id: string;

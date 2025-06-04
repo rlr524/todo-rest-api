@@ -7,7 +7,14 @@ service: todo-rest-api
 frameworkVersion: "4"
 
 plugins:
+    - serverless-dynamodb
     - serverless-offline
+
+custom:
+    serverless-dynamodb:
+        start:
+            port: 8000
+            docker: false
 
 provider:
     name: aws

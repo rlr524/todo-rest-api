@@ -1,7 +1,7 @@
 import serverless from "serverless-http";
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import router from "./routes/item";
+import router from "./routes/item.js";
 
 dotenv.config();
 const app = express();
