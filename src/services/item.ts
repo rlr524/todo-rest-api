@@ -2,6 +2,7 @@ import { Item } from "./../interfaces/item";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { v4 as uuidv4 } from "uuid";
 import { logger } from "../utils/logger";
+import ImageMetadata from "../interfaces/imageMetadata";
 
 const dynamodb = new DocumentClient();
 
@@ -10,7 +11,8 @@ class ItemService {
 		title: string,
 		description: string,
 		due: Date,
-		owner: string
+		owner: string,
+		images?: ImageMetadata[]
 	): Promise<Item> {
 		const createdAt = new Date();
 		const id = uuidv4();
@@ -22,6 +24,7 @@ class ItemService {
 			description,
 			due,
 			owner,
+			images,
 			completed,
 			deleted,
 			createdAt,
@@ -65,19 +68,22 @@ class ItemService {
 	static async updateItem(
 		tableName: string,
 		key: { id: string },
-		item: Partial<Item>
+		item: Partial<Item>,
+		images?: ImageMetadata[]
 	): Promise<Item | null> {
 		const params = {
 			TableName: tableName,
 			Key: key,
+			images: images,
 			UpdateExpression:
-				"set #title = :title, #description = :description, #due = :due, #owner = :owner, #completed = :completed",
+				"set #title = :title, #description = :description, #due = :due, #owner = :owner, #completed = :completed, #images = :images",
 			ExpressionAttributeNames: {
 				"#title": "title",
 				"#description": "description",
 				"#due": "due",
 				"#owner": "owner",
 				"#completed": "completed",
+				"#images": "images"
 			},
 			ExpressionAttributeValues: {
 				":title": item.title ?? null,
@@ -85,6 +91,7 @@ class ItemService {
 				":due": item.due ?? null,
 				":owner": item.owner ?? null,
 				":completed": item.completed ?? null,
+				":images": item.images ?? null,
 			},
 		};
 
