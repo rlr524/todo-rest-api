@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import createOrUpdateValidateItem from "../utils/validators/item.js";
+import createOrUpdateValidateItem from "../utils/validators/item";
 
 export default function validateItem(
 	req: Request,

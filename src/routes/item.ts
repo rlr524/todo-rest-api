@@ -1,9 +1,9 @@
 import { Router } from "express";
-import ItemController from "../controllers/item.js";
-import validateItem from "../middlewares/validateItem.js";
+import ItemController from "../controllers/item";
+import validateItem from "../middlewares/validateItem";
 import multer from "multer";
-import addFileToRequest from "../middlewares/addFileToRequest.js";
-import validateMultipleImages from "../middlewares/validateMultipleImages.js";
+import addFileToRequest from "../middlewares/addFileToRequest";
+import validateMultipleImages from "../middlewares/validateMultipleImages";
 
 const router = Router();
 
@@ -11,14 +11,14 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 // Get /items
-router.get("/", ItemController.getAllItems);
+router.get("/items", ItemController.getAllItems);
 
-// Get /items/:id
-router.get("/:id", ItemController.getItemById);
+// Get /item/:id
+router.get("/item/:id", ItemController.getItemById);
 
-// Post /items
+// Post /item
 router.post(
-	"/",
+	"/item",
 	upload.array("images", 10),
 	validateItem,
 	addFileToRequest,
@@ -26,16 +26,16 @@ router.post(
 	ItemController.createItem
 );
 
-// Patch /items
+// Patch /item
 router.patch(
-	"/",
+	"/item",
 	upload.array("images", 10),
 	addFileToRequest,
 	validateMultipleImages,
 	ItemController.updateItem
 );
 
-// Delete /items
-router.delete("/", ItemController.deleteItem);
+// Delete /item
+router.delete("/item/:id", ItemController.deleteItem);
 
 export default router;

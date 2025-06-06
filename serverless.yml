@@ -4,7 +4,6 @@ org: emiyaconsulting
 app: todo-rest-api
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: todo-rest-api
-frameworkVersion: "4"
 
 plugins:
     - serverless-dynamodb
@@ -32,45 +31,45 @@ provider:
 
 functions:
     app:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         events:
             - httpApi:
                   path: /
                   method: GET
     getItems:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         description: Get all items
         events:
             - httpApi:
                   path: /items
                   method: GET
     createItem:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         description: Create a single item
         events:
             - httpApi:
                   path: /item
                   method: POST
     updateItem:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         description: Update a single item
         events:
             - httpApi:
                   path: /item
                   method: PATCH
     getItemById:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         description: Get a single item by ID
         events:
             - httpApi:
                   path: /item/{id}
                   method: GET
     deleteItem:
-        handler: dist/index.handler
+        handler: dist/src/index.handler
         description: Flag a single item as deleted
         events:
             - httpApi:
-                  path: /item
+                  path: /item/{id}
                   method: DELETE
 
 resources:

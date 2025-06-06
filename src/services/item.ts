@@ -1,8 +1,8 @@
-import { Item } from "./../interfaces/item.js";
+import { Item } from "./../interfaces/item";
 import { DocumentClient } from "aws-sdk/clients/dynamodb";
 import { v4 as uuidv4 } from "uuid";
-import { logger } from "../utils/logger.js";
-import ImageMetadata from "../interfaces/imageMetadata.js";
+import { logger } from "../utils/logger";
+import ImageMetadata from "../interfaces/imageMetadata";
 
 const dynamodb = new DocumentClient();
 
@@ -83,7 +83,7 @@ class ItemService {
 				"#due": "due",
 				"#owner": "owner",
 				"#completed": "completed",
-				"#images": "images"
+				"#images": "images",
 			},
 			ExpressionAttributeValues: {
 				":title": item.title ?? null,

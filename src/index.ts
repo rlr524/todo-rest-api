@@ -1,7 +1,7 @@
 import serverless from "serverless-http";
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
-import router from "./routes/item.js";
+import router from "./routes/item";
 
 dotenv.config();
 const app = express();
@@ -13,6 +13,6 @@ app.get("/", function (req: Request, res: Response) {
 	res.send("Welcome to the ToDo API");
 });
 
-app.use("/items", router);
+app.use(router);
 
 export const handler = serverless(app);

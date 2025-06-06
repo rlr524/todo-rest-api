@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import ItemService from "../services/item.js";
-import { accessLogger } from "../utils/logger.js";
-import asyncMiddleware from "../middlewares/asyncMiddleware.js";
-import MulterRequest from "../types/multerRequest.js";
-import ImageMetadata from "../interfaces/imageMetadata.js";
-import ImageService from "../services/image.js";
+import ItemService from "../services/item";
+import { accessLogger } from "../utils/logger";
+import asyncMiddleware from "../middlewares/asyncMiddleware";
+import MulterRequest from "../types/multerRequest";
+import ImageMetadata from "../interfaces/imageMetadata";
+import ImageService from "../services/image";
 
 class ItemController {
 	static createItem = asyncMiddleware(

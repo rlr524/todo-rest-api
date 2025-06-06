@@ -1,5 +1,6 @@
 {
 	"name": "todo-rest-api",
+	"main": "dist/index.js",
 	"version": "1.0.0",
 	"description": "",
 	"homepage": "https://github.com/rlr524/todo-rest-api#readme",
@@ -12,13 +13,12 @@
 	},
 	"license": "ISC",
 	"author": "Rob Ranf",
-	"type": "module",
-	"main": "dist/index.js",
 	"scripts": {
-		"compile": "tsc",
+		"compile": "tsc --build",
+		"clean": "rm -rf ./dist",
 		"start": "serverless offline start --verbose",
 		"deploy": "serverless deploy --verbose",
-		"build": "npm run compile && npm run start",
+		"build": "npm ci && npm run clean && npm run compile",
 		"test": "jest"
 	},
 	"devDependencies": {

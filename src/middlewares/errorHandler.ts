@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { logger } from "../utils/logger.js";
+import { logger } from "../utils/logger";
 
 export function errorHandler(error: Error, req: Request, res: Response) {
 	logger.error(`an error occurred: ${error}`);

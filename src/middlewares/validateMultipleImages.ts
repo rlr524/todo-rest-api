@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { RequestHandler } from "express";
-import MulterRequest from "../types/multerRequest.js";
-import validateImage from "../utils/validators/image.js";
+import MulterRequest from "../types/multerRequest";
+import validateImage from "../utils/validators/image";
 
 const validateMultipleImages: RequestHandler<
 	Record<string, any>,

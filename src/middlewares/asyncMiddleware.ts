@@ -1,6 +1,6 @@
 import { RequestHandler, Response, NextFunction } from "express";
-import MulterRequest from "../types/multerRequest.js";
-import { errorHandler } from "./errorHandler.js";
+import MulterRequest from "../types/multerRequest";
+import { errorHandler } from "./errorHandler";
 
 const asyncMiddleware =
 	<T>(
