@@ -14,11 +14,11 @@
 	"license": "ISC",
 	"author": "Rob Ranf",
 	"scripts": {
-		"compile": "tsc --build",
+		"compile": "tsc",
 		"clean": "rm -rf ./dist",
 		"start": "serverless offline start --verbose",
 		"deploy": "serverless deploy --verbose",
-		"build": "npm ci && npm run clean && npm run compile",
+		"build": "npm run compile && npm run start",
 		"test": "jest"
 	},
 	"devDependencies": {

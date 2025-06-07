@@ -34,42 +34,42 @@ functions:
         handler: dist/src/index.handler
         events:
             - httpApi:
-                  path: /
+                  path: /api/v1/
                   method: GET
     getItems:
         handler: dist/src/index.handler
         description: Get all items
         events:
             - httpApi:
-                  path: /items
+                  path: /api/v1/items
                   method: GET
     createItem:
         handler: dist/src/index.handler
         description: Create a single item
         events:
             - httpApi:
-                  path: /item
+                  path: /api/v1/item
                   method: POST
     updateItem:
         handler: dist/src/index.handler
         description: Update a single item
         events:
             - httpApi:
-                  path: /item
+                  path: /api/v1/item
                   method: PATCH
     getItemById:
         handler: dist/src/index.handler
         description: Get a single item by ID
         events:
             - httpApi:
-                  path: /item/{id}
+                  path: /api/v1/item/{id}
                   method: GET
     deleteItem:
         handler: dist/src/index.handler
         description: Flag a single item as deleted
         events:
             - httpApi:
-                  path: /item/{id}
+                  path: /api/v1/item/{id}
                   method: DELETE
 
 resources:
